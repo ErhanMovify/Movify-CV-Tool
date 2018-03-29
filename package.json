@@ -1,0 +1,24 @@
+{
+  "name": "movify-cv",
+  "version": "1.0.0",
+  "description": "Curriculum vitae platform for Movify",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node index.js --presets babel-preset-env"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/Users/renaud/Developer/./Git/movify-cv"
+  },
+  "author": "Renaud Parize <renaud@movify.be>",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "docxtemplater": "^3.4.2",
+    "jszip": "2.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
+  }
+}
