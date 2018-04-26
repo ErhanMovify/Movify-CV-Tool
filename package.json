@@ -1,24 +1,22 @@
 {
-  "name": "movify-cv",
-  "version": "1.0.0",
-  "description": "Curriculum vitae platform for Movify",
-  "main": "index.js",
+  "name": "movify-cv-tool",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "babel-node index.js --presets babel-preset-env"
+    "start": "nodemon server.js --exec babel-node --presets es2015,stage-0"
   },
-  "repository": {
-    "type": "git",
-    "url": "/Users/renaud/Developer/./Git/movify-cv"
-  },
-  "author": "Renaud Parize <renaud@movify.be>",
-  "license": "ISC",
   "dependencies": {
-    "babel": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "docxtemplater": "^3.4.2",
-    "jszip": "2.6.1"
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "docxtemplater": "^3.6.1",
+    "express": "~4.16.0",
+    "jszip": "^2.6.1",
+    "morgan": "~1.9.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "nodemon": "^1.17.3"
   }
 }

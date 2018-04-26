@@ -1,13 +1,9 @@
-import JSZip from 'jszip';
-import Docxtemplater from 'docxtemplater';
-import fs from 'fs';
-import path from 'path';
+import express from 'express'
+import CVGenerator from './CVGenerator'
 
-const TEMPLATE_FILE_PATH = path.resolve(__dirname, 'template.docx');
-const TEMPLATE_FILE_TYPE = 'binary';
-const OUTPUT_FILE_PATH = path.resolve(__dirname, 'output.docx');
+const router = express.Router()
 
-const DATA  = {
+const DATA = {
   firstname: 'John',
   lastname: 'Doe',
   position: 'CV generator',
@@ -17,35 +13,16 @@ const DATA  = {
 `
 };
 
-//Load the docx file as a binary
-const content = fs.readFileSync(TEMPLATE_FILE_PATH, TEMPLATE_FILE_TYPE);
+/* GET home page. */
+router.get('/', function (req, res, next) {
+  res.render('index', {title: 'Express'})
+})
 
-const zip = new JSZip(content);
+router.post('/generate', function(req, res, next){
+  const doc = CVGenerator.generateCVFromData(req.body);
 
-const doc = new Docxtemplater();
-doc.loadZip(zip);
+  res.status(200)
+  res.end(doc)
+});
 
-//set the templateVariables
-doc.setData(DATA);
-
-try {
-  // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
-  doc.render()
-}
-catch (error) {
-  const e = {
-    message: error.message,
-    name: error.name,
-    stack: error.stack,
-    properties: error.properties,
-  }
-  console.log(JSON.stringify({ error: e }));
-  // The error thrown here contains additional information when logged with JSON.stringify (it contains a property object).
-  throw error;
-}
-
-const buf = doc.getZip()
-  .generate({ type: 'nodebuffer' });
-
-// buf is a nodejs buffer, you can either write it to a file or do anything else with it.
-fs.writeFileSync(OUTPUT_FILE_PATH, buf);
+export default router
