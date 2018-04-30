@@ -18,6 +18,8 @@ class ProfessionalExperiences extends Component {
       role: PropTypes.string.isRequired,
       tasks: PropTypes.string.isRequired,
       methodology: PropTypes.string.isRequired,
+      tools: PropTypes.string.isRequired,
+      period: PropTypes.string.isRequired,
     })).isRequired,
 
     addExperience: PropTypes.func.isRequired,

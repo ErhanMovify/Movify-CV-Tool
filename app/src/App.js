@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import styled, {ThemeProvider} from 'styled-components'
+import Miscellaneous from './Containers/Miscellaneous'
 import ProfessionalExperiences from './Containers/ProfessionalExperiences'
+import SkillsAndTrainings from './Containers/SkillsAndTrainings'
 
 import theme from './theme'
 import Header from './Containers/Header'
@@ -22,6 +24,8 @@ class App extends Component {
             <Form>
               <BasicInfo/>
               <ProfessionalExperiences/>
+              <SkillsAndTrainings />
+              <Miscellaneous />
             </Form>
           </div>
         </PageContainer>

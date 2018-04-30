@@ -11,6 +11,7 @@ import axios from 'axios/index'
 import SecondaryButton from '../Components/SecondaryButton'
 import {reset as resetBasicInfo} from '../reducers/basicInfo'
 import {reset as resetProfessionalExperiences} from '../reducers/professionalExperiences'
+import {reset as resetMiscellaneous} from '../reducers/miscellaneous'
 
 const ButtonsContainer = styled.div`
   button {
@@ -26,15 +27,26 @@ class Header extends Component {
       position: PropTypes.string.isRequired,
       executiveSummary: PropTypes.string.isRequired
     }).isRequired,
+    experiences: PropTypes.arrayOf(PropTypes.shape({
+      companyName: PropTypes.string.isRequired,
+      role: PropTypes.string.isRequired,
+      tasks: PropTypes.string.isRequired,
+      methodology: PropTypes.string.isRequired,
+      tools: PropTypes.string.isRequired,
+      period: PropTypes.string.isRequired,
+    })).isRequired,
+    miscellaneous: PropTypes.string,
 
     resetBasicInfo: PropTypes.func.isRequired,
     resetProfessionalExperiences: PropTypes.func.isRequired,
+    resetMiscellaneous: PropTypes.func.isRequired,
   }
 
   generateCV = () => {
     const data = {
       ...this.props.basicInfo,
       experiences: this.props.professionalExperiences,
+      miscellaneous: this.props.miscellaneous,
     };
 
     axios({
@@ -53,7 +65,9 @@ class Header extends Component {
   }
 
   reset = () => {
-    this.props.resetProfessionalExperiences();
+    // this.props.resetBasicInfo();
+    // this.props.resetProfessionalExperiences();
+    this.props.resetMiscellaneous();
   }
 
   render() {
@@ -73,9 +87,11 @@ export default connect(
   state => ({
     basicInfo: state.basicInfo,
     professionalExperiences: state.professionalExperiences,
+    miscellaneous: state.miscellaneous
   }),
   dispatch => bindActionCreators({
     resetBasicInfo,
     resetProfessionalExperiences,
+    resetMiscellaneous,
   }, dispatch)
 )(Header)

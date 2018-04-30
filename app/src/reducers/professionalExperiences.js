@@ -5,6 +5,8 @@ const DEFAULT_EXPERIENCE = {
   role: '',
   tasks: '',
   methodology: '',
+  tools: '',
+  period: ''
 }
 
 const RESET = "PROFESSIONAL_EXPERIENCES_RESET";
