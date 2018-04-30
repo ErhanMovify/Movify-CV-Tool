@@ -1,5 +1,3 @@
-import { css } from 'styled-components'
-
 const theme = {
   colors: {
     text: "#444444",

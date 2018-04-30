@@ -2,6 +2,24 @@ import JSZip from 'jszip';
 import Docxtemplater from 'docxtemplater';
 import fs from 'fs';
 import path from 'path';
+import expressions from 'angular-expressions'
+
+expressions.filters.split = function (input, s) {
+  return input.split(s);
+};
+
+const angularParser = function (tag) {
+  if (tag === '.') {
+    return {
+      get: function (s) {
+        return s;
+      }
+    };
+  }
+  return {
+    get: expressions.compile(tag)
+  };
+};
 
 const TEMPLATE_FILE_PATH = path.resolve(__dirname, 'resources', 'template.docx');
 const TEMPLATE_FILE_TYPE = 'binary';
@@ -16,6 +34,7 @@ export default {
 
     const doc = new Docxtemplater();
     doc.loadZip(zip);
+    doc.setOptions({parser: angularParser})
 
   //set the templateVariables
     doc.setData(DATA);

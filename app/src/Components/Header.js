@@ -12,6 +12,12 @@ const Header = styled.div`
   justify-content: space-between;
   padding-left: 25px;
   padding-right: 25px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
 `
 
 const Logo = styled.img`

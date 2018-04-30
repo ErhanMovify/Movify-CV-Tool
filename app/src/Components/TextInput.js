@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import uuid from 'uuid'
 
@@ -19,12 +20,28 @@ export const Label = styled.label`
   color: ${p => p.theme.colors.main};
 `
 
-export default ({label, ...props}) => {
-  const id = uuid.v4();
-  return (
+export default class TextInput extends Component {
+
+  static propTypes = {
+    label: PropTypes.string,
+    onChange: PropTypes.func,
+  }
+
+  static defaultProps = {
+    label: null,
+    onChange: () => {}
+  }
+
+  onChange = event => this.props.onChange(event.target.value)
+
+  render() {
+    const {label, onChange, ...props} = this.props;
+    const id = uuid.v4();
+    return (
       <Container>
         <Label htmlFor={id}>{label}</Label>
-        <Input id={id} type="text" {...props}/>
+        <Input id={id} type="text" onChange={this.onChange} {...props}/>
       </Container>
-  )
+    )
+  }
 }

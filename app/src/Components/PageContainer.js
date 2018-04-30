@@ -6,7 +6,7 @@ export default styled.div`
   width: 100%;
   background-color: #f0f0f0;
   overflow-y: auto;
-  
+  padding-top: 80px;
   * {
     outline-color: ${p => p.theme.colors.main};
   }

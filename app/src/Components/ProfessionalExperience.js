@@ -10,36 +10,46 @@ import Toolbar from './Toolbar'
 const Container = styled.div`
   margin-bottom: 20px;
   margin-top: 20px;
-`;
+`
 
 export default class ProfessionalExperience extends React.Component {
 
   static propTypes = {
-    companyName: PropTypes.string,
-    role: PropTypes.string,
+    experience: PropTypes.shape({
+      companyName: PropTypes.string,
+      role: PropTypes.string,
+      methodology: PropTypes.string,
+      tasks: PropTypes.string
+    }).isRequired,
 
     onChange: PropTypes.func,
-    onRemove: PropTypes.func,
+    onRemove: PropTypes.func
+  }
+
+  onChange = (field, value) => {
+    const experience = {...this.props.experience};
+    experience[field] = value;
+    this.props.onChange(experience);
   }
 
   render() {
     return (
-        <Container>
-          <TextInput label="Company name" type="text" name="companyName" value={this.props.companyName}
-                     onChange={this.props.onChange}/>
-          <TextInput label="Role" type="text" name="role" value={this.props.role}
-                     onChange={this.props.onChange}/>
-          <TextArea label="Tasks" name="tasks" value={this.props.tasks}
-                     onChange={this.props.onChange}/>
+      <Container>
+        <TextInput label="Company name" type="text" name="companyName" value={this.props.experience.companyName}
+                   onChange={value => this.onChange('companyName', value)}/>
+        <TextInput label="Role" type="text" name="role" value={this.props.experience.role}
+                   onChange={value => this.onChange('role', value)}/>
+        <TextArea label="Tasks" name="tasks" value={this.props.experience.tasks}
+                  onChange={value => this.onChange('tasks', value)}/>
 
-          <TextInput label="Methodology" type="text" name="methodology" value={this.props.methodology}
-                     onChange={this.props.onChange}/>
-          <Toolbar>
-            <PrimaryButton type="button" onClick={this.props.onRemove}>
-              Remove experience
-            </PrimaryButton>
-          </Toolbar>
-        </Container>
+        <TextInput label="Methodology" type="text" name="methodology" value={this.props.experience.methodology}
+                   onChange={value => this.onChange('methodology', value)}/>
+        <Toolbar>
+          <PrimaryButton type="button" onClick={this.props.onRemove}>
+            Remove experience
+          </PrimaryButton>
+        </Toolbar>
+      </Container>
     )
   }
 }
