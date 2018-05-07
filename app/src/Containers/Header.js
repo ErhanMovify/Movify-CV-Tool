@@ -12,12 +12,19 @@ import SecondaryButton from '../Components/SecondaryButton'
 import {reset as resetBasicInfo} from '../reducers/basicInfo'
 import {reset as resetProfessionalExperiences} from '../reducers/professionalExperiences'
 import {reset as resetMiscellaneous} from '../reducers/miscellaneous'
+import {reset as resetSkillsAndTrainings} from '../reducers/skillsAndTrainings'
+import {reset as resetAcademicBackground} from '../reducers/academicBackground'
+import {reset as resetLanguages} from '../reducers/languages'
 
 const ButtonsContainer = styled.div`
   button {
     margin: 0 10px;
   }
 `
+
+const TitleText = styled.h1`
+  text-transform: capitalize;
+`;
 
 class Header extends Component {
   static propTypes = {
@@ -27,7 +34,7 @@ class Header extends Component {
       position: PropTypes.string.isRequired,
       executiveSummary: PropTypes.string.isRequired
     }).isRequired,
-    experiences: PropTypes.arrayOf(PropTypes.shape({
+    professionalExperiences: PropTypes.arrayOf(PropTypes.shape({
       companyName: PropTypes.string.isRequired,
       role: PropTypes.string.isRequired,
       tasks: PropTypes.string.isRequired,
@@ -36,10 +43,19 @@ class Header extends Component {
       period: PropTypes.string.isRequired,
     })).isRequired,
     miscellaneous: PropTypes.string,
+    skillsAndTrainings: PropTypes.string,
+    academicBackground: PropTypes.string,
+    languages: PropTypes.arrayOf(PropTypes.shape({
+      languageName: PropTypes.string.isRequired,
+      level: PropTypes.string.isRequired,
+    })),
 
     resetBasicInfo: PropTypes.func.isRequired,
     resetProfessionalExperiences: PropTypes.func.isRequired,
     resetMiscellaneous: PropTypes.func.isRequired,
+    resetSkillsAndTrainings: PropTypes.func.isRequired,
+    resetAcademicBackground: PropTypes.func.isRequired,
+    resetLanguages: PropTypes.func.isRequired,
   }
 
   generateCV = () => {
@@ -47,6 +63,9 @@ class Header extends Component {
       ...this.props.basicInfo,
       experiences: this.props.professionalExperiences,
       miscellaneous: this.props.miscellaneous,
+      skillsAndTrainings: this.props.skillsAndTrainings,
+      academicBackground: this.props.academicBackground,
+      languages: this.props.languages,
     };
 
     axios({
@@ -65,15 +84,18 @@ class Header extends Component {
   }
 
   reset = () => {
-    // this.props.resetBasicInfo();
-    // this.props.resetProfessionalExperiences();
-    this.props.resetMiscellaneous();
+    //this.props.resetBasicInfo();
+    //this.props.resetProfessionalExperiences();
+    //this.props.resetSkillsAndTrainings();
+    //this.props.resetAcademicBackground();
+    //this.props.resetMiscellaneous();
+    this.props.resetLanguages();
   }
 
   render() {
     return (
       <HeaderContainer>
-        <h1>Application form</h1>
+        <TitleText>Application form</TitleText>
         <ButtonsContainer>
           <SecondaryButton onClick={this.reset}>RESET</SecondaryButton>
           <PrimaryButton onClick={this.generateCV}>GENERATE</PrimaryButton>
@@ -87,11 +109,17 @@ export default connect(
   state => ({
     basicInfo: state.basicInfo,
     professionalExperiences: state.professionalExperiences,
-    miscellaneous: state.miscellaneous
+    miscellaneous: state.miscellaneous,
+    skillsAndTrainings: state.skillsAndTrainings,
+    academicBackground: state.academicBackground,
+    languages: state.languages,
   }),
   dispatch => bindActionCreators({
     resetBasicInfo,
     resetProfessionalExperiences,
     resetMiscellaneous,
+    resetSkillsAndTrainings,
+    resetAcademicBackground,
+    resetLanguages,
   }, dispatch)
 )(Header)

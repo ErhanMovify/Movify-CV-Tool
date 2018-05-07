@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import styled, {ThemeProvider} from 'styled-components'
+import AcademicBackground from './Containers/AcademicBackground'
+import Languages from './Containers/Languages'
 import Miscellaneous from './Containers/Miscellaneous'
 import ProfessionalExperiences from './Containers/ProfessionalExperiences'
 import SkillsAndTrainings from './Containers/SkillsAndTrainings'
@@ -12,6 +14,7 @@ import BasicInfo from './Containers/BasicInfo'
 const Form = styled.form`
   max-width: 900px;
   margin: 0 auto;
+  padding-bottom: 40px;
 `
 
 class App extends Component {
@@ -24,8 +27,10 @@ class App extends Component {
             <Form>
               <BasicInfo/>
               <ProfessionalExperiences/>
-              <SkillsAndTrainings />
-              <Miscellaneous />
+              <AcademicBackground/>
+              <Languages/>
+              <SkillsAndTrainings/>
+              <Miscellaneous/>
             </Form>
           </div>
         </PageContainer>
