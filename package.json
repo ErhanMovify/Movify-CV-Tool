@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js --exec babel-node --presets es2015,stage-0"
+    "start": "nodemon ./src/server.js --exec babel-node --presets es2015,stage-0"
   },
   "dependencies": {
     "angular-expressions": "^0.3.0",
