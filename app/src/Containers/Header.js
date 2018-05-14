@@ -70,7 +70,7 @@ class Header extends Component {
 
     axios({
       method: 'post',
-      url: 'http://localhost:3000/generate',
+      url: '/generate',
       data: data,
       responseType: 'arraybuffer'
     }).then(
@@ -84,11 +84,11 @@ class Header extends Component {
   }
 
   reset = () => {
-    //this.props.resetBasicInfo();
-    //this.props.resetProfessionalExperiences();
-    //this.props.resetSkillsAndTrainings();
-    //this.props.resetAcademicBackground();
-    //this.props.resetMiscellaneous();
+    this.props.resetBasicInfo();
+    this.props.resetProfessionalExperiences();
+    this.props.resetSkillsAndTrainings();
+    this.props.resetAcademicBackground();
+    this.props.resetMiscellaneous();
     this.props.resetLanguages();
   }
 
