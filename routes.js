@@ -1,10 +1,11 @@
-import express from 'express'
-import CVGenerator from './CVGenerator'
+const express = require('express')
+const CVGenerator = require('./CVGenerator')
+const path = require('path')
 
 const router = express.Router()
 
 router.get('/', function (req, res, next) {
-  res.render('index')
+  res.sendfile(path.join(__dirname, '..', 'app', 'build', 'index.html'));
 })
 
 router.post('/generate', function(req, res, next){
@@ -14,4 +15,4 @@ router.post('/generate', function(req, res, next){
   res.end(doc)
 });
 
-export default router
+module.exports = router

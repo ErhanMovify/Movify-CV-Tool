@@ -1,8 +1,8 @@
-import JSZip from 'jszip';
-import Docxtemplater from 'docxtemplater';
-import fs from 'fs';
-import path from 'path';
-import expressions from 'angular-expressions'
+const JSZip = require('jszip');
+const Docxtemplater = require('docxtemplater');
+const fs = require('fs');
+const path = require('path');
+const expressions = require('angular-expressions');
 
 expressions.filters.split = function (input, s) {
   return input.split(s);
@@ -24,7 +24,7 @@ const angularParser = function (tag) {
 const TEMPLATE_FILE_PATH = path.resolve(__dirname, 'resources', 'template.docx');
 const TEMPLATE_FILE_TYPE = 'binary';
 
-export default {
+module.exports = {
   generateCVFromData(DATA) {
 
 //Load the docx file as a binary
