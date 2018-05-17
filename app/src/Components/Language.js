@@ -51,7 +51,6 @@ class Language extends Component {
             <option value={"Mother language"}>Mother language</option>
           </select>
         </SelectContainer>
-        <RemoveButton onClick={this.removeLanguage}>Remove</RemoveButton>
       </Container>
     )
   }

@@ -1,4 +1,19 @@
-const initialState = [];
+import { REHYDRATE } from 'redux-persist'
+
+const initialState = [
+  {
+    languageName: "English",
+    level: "Basic knowledge",
+  },
+  {
+    languageName: "French",
+    level: "Basic knowledge",
+  },
+  {
+    languageName: "Dutch",
+    level: "Basic knowledge",
+  }
+];
 
 const RESET = "LANGUAGES_RESET";
 const ADD_LANGUAGE = "ADD_LANGUAGE"
@@ -18,11 +33,11 @@ const languages = (state = initialState, {type, payload}) => {
       ]
     case SET_LANGUAGE_LEVEL:
       return [
-        ...state.map((experience, index) => {
+        ...state.map((language, index) => {
           if(index === payload.languageIndex) {
-            experience.level = payload.level
+            language.level = payload.level
           }
-          return experience
+          return language
         })
       ]
     case RESET:
