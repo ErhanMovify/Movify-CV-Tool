@@ -10,12 +10,13 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 25px;
+  padding-left: 60px;
   padding-right: 25px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  overflow: hidden;
   
   box-shadow: 0 2px 5px rgba(0,0,0,.1);
 `

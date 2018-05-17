@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
+import Beta from '../Components/Beta'
 
 import PrimaryButton from '../Components/PrimaryButton'
 import HeaderContainer from '../Components/Header'
@@ -97,6 +98,7 @@ class Header extends Component {
   render() {
     return (
       <HeaderContainer>
+        <Beta/>
         <TitleText>Application form</TitleText>
         <ButtonsContainer>
           <SecondaryButton onClick={this.reset}>RESET</SecondaryButton>
