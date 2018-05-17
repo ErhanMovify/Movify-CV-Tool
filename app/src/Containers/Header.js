@@ -27,6 +27,10 @@ const TitleText = styled.h1`
   text-transform: capitalize;
 `;
 
+const Link = styled.a`
+  color: ${p => p.theme.colors.main};
+`
+
 class Header extends Component {
   static propTypes = {
     basicInfo: PropTypes.shape({
@@ -101,6 +105,7 @@ class Header extends Component {
         <Beta/>
         <TitleText>Application form</TitleText>
         <ButtonsContainer>
+          <Link href="mailto:application.form.feedback@movify.be">Send Feedback</Link>
           <SecondaryButton onClick={this.reset}>RESET</SecondaryButton>
           <PrimaryButton onClick={this.generateCV}>GENERATE</PrimaryButton>
         </ButtonsContainer>
