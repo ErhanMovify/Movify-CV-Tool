@@ -44,8 +44,9 @@ class Language extends Component {
         <b>{this.props.languageName}</b>:
         <SelectContainer>
           <select value={this.props.level} onChange={this.onLanguageChanged}>
+            <option value={"None"}>None</option>
             <option value={"Basic knowledge"}>Basic knowledge</option>
-            <option value={"Average"}>Average</option>
+            <option value={"Intermediate"}>Intermediate</option>
             <option value={"Good"}>Good</option>
             <option value={"Very good"}>Very good</option>
             <option value={"Mother language"}>Mother language</option>
