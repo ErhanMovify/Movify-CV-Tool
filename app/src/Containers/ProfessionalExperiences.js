@@ -31,6 +31,9 @@ class ProfessionalExperiences extends Component {
     return (
       <Card>
         <Fieldset legend="Professional experiences:">
+          <Toolbar>
+            <PrimaryButton type="button" onClick={this.props.addExperience}>Add experience</PrimaryButton>
+          </Toolbar>
           {this.props.experiences.map((experience, index) => (
             <ProfessionalExperience
               key={index}
@@ -39,9 +42,6 @@ class ProfessionalExperiences extends Component {
               onRemove={() => this.props.removeExperienceAtIndex(index)}
             />
           ))}
-          <Toolbar>
-            <PrimaryButton type="button" onClick={this.props.addExperience}>Add experience</PrimaryButton>
-          </Toolbar>
         </Fieldset>
       </Card>
     )
