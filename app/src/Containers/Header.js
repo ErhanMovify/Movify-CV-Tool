@@ -75,7 +75,9 @@ class Header extends Component {
       responseType: 'arraybuffer'
     }).then(
       response => {
-        fileDownload(response.data, `Movify CV ${this.props.basicInfo.firstName} ${this.props.basicInfo.lastName}.docx`)
+        const date = new Date().toISOString().slice(0,10).replace(/-/g,"")
+        // Naming convention: Firstname Lastname - CV Movify - Position - YYYYMMDD
+        fileDownload(response.data, `${this.props.basicInfo.firstName} ${this.props.basicInfo.lastName} - CV Movify - ${this.props.basicInfo.position} - ${date}.docx`)
       },
       err => {
         console.error(err)
