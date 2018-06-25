@@ -7,6 +7,7 @@ export default Button.extend`
   color: ${p => p.theme.colors.main};
   box-shadow: 0 5px 25px 5px transparent;
   letter-spacing: 1px;
+  margin: 0 5px;
   
   &:hover, &:focus {
     background-color: ${p => p.theme.colors.main};
