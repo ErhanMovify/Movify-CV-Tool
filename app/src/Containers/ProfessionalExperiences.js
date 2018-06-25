@@ -8,23 +8,21 @@ import Fieldset from '../Components/Fieldset'
 import Toolbar from '../Components/Toolbar'
 import PrimaryButton from '../Components/PrimaryButton'
 import ProfessionalExperience from '../Components/ProfessionalExperience'
-import {addExperience, updateExperienceAtIndex, removeExperienceAtIndex} from '../reducers/professionalExperiences'
+import {addExperience} from '../reducers/professionalExperiences'
 
 class ProfessionalExperiences extends Component {
 
   static propTypes = {
     experiences: PropTypes.arrayOf(PropTypes.shape({
       companyName: PropTypes.string.isRequired,
-      role: PropTypes.string.isRequired,
-      tasks: PropTypes.string.isRequired,
-      methodology: PropTypes.string.isRequired,
-      tools: PropTypes.string.isRequired,
-      period: PropTypes.string.isRequired,
+      role: PropTypes.string,
+      tasks: PropTypes.string,
+      methodology: PropTypes.string,
+      tools: PropTypes.string,
+      period: PropTypes.string,
     })).isRequired,
 
     addExperience: PropTypes.func.isRequired,
-    updateExperienceAtIndex: PropTypes.func.isRequired,
-    removeExperienceAtIndex: PropTypes.func.isRequired,
   }
 
   render() {
@@ -32,15 +30,13 @@ class ProfessionalExperiences extends Component {
       <Card>
         <Fieldset legend="Professional experiences:">
           <Toolbar>
-            <PrimaryButton type="button" onClick={this.props.addExperience}>Add experience</PrimaryButton>
+            <PrimaryButton type="button" onClick={this.props.addExperience}>+ Add a new experience</PrimaryButton>
           </Toolbar>
-          {this.props.experiences.map((experience, index) => (
-            <ProfessionalExperience
-              key={index}
-              experience={experience}
-              onChange={experience => this.props.updateExperienceAtIndex(experience, index)}
-              onRemove={() => this.props.removeExperienceAtIndex(index)}
-            />
+          {this.props.experiences.map((_, index) => (
+              <div key={index}>
+                <hr/>
+                <ProfessionalExperience index={index}/>
+              </div>
           ))}
         </Fieldset>
       </Card>
@@ -53,8 +49,6 @@ export default connect(
     experiences: state.professionalExperiences
   }),
   dispatch => bindActionCreators({
-    addExperience,
-    updateExperienceAtIndex,
-    removeExperienceAtIndex
+    addExperience
   }, dispatch)
 )(ProfessionalExperiences)

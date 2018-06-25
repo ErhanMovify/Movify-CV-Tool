@@ -4,15 +4,23 @@ import PropTypes from 'prop-types'
 
 import TextInput from './TextInput'
 import TextArea from './Textarea'
-import PrimaryButton from './PrimaryButton'
 import Toolbar from './Toolbar'
+import SecondaryButton from './SecondaryButton'
+import {bindActionCreators} from 'redux'
+import {
+  moveExperienceAtIndexDown,
+  moveExperienceAtIndexUp,
+  removeExperienceAtIndex,
+  updateExperienceAtIndex
+} from '../reducers/professionalExperiences'
+import {connect} from 'react-redux'
 
 const Container = styled.div`
   margin-bottom: 20px;
   margin-top: 20px;
 `
 
-export default class ProfessionalExperience extends React.Component {
+class ProfessionalExperience extends React.Component {
 
   static propTypes = {
     experience: PropTypes.shape({
@@ -22,40 +30,80 @@ export default class ProfessionalExperience extends React.Component {
       tasks: PropTypes.string,
       tools: PropTypes.string,
       period: PropTypes.string
-    }).isRequired,
+    }),
+    index: PropTypes.number.isRequired,
+    amountOfExperiences: PropTypes.number.isRequired,
 
-    onChange: PropTypes.func,
-    onRemove: PropTypes.func
+    updateExperienceAtIndex: PropTypes.func.isRequired,
+    removeExperienceAtIndex: PropTypes.func.isRequired,
+    moveExperienceAtIndexUp: PropTypes.func.isRequired,
   }
 
   onChange = (field, value) => {
     const experience = {...this.props.experience};
     experience[field] = value;
-    this.props.onChange(experience);
+    this.props.updateExperienceAtIndex(experience, this.props.index);
+  }
+
+  remove = () => {
+    this.props.removeExperienceAtIndex(this.props.index);
+  }
+
+  moveUp = () => {
+    this.props.moveExperienceAtIndexUp(this.props.index);
+  }
+
+  moveDown = () => {
+    this.props.moveExperienceAtIndexDown(this.props.index);
   }
 
   render() {
+    const { experience, amountOfExperiences, index } = this.props;
     return (
       <Container>
-        <TextInput label="Company name" type="text" name="companyName" value={this.props.experience.companyName}
+        <TextInput label="Company name" type="text" name="companyName" value={experience.companyName}
                    onChange={value => this.onChange('companyName', value)}/>
-        <TextInput label="Role" type="text" name="role" value={this.props.experience.role}
+        <TextInput label="Role" type="text" name="role" value={experience.role}
                    onChange={value => this.onChange('role', value)}/>
-        <TextInput label="Period" type="text" name="period" value={this.props.experience.period}
+        <TextInput label="Period" type="text" name="period" value={experience.period}
                    onChange={value => this.onChange('period', value)}/>
-        <TextArea label="Tasks" name="tasks" value={this.props.experience.tasks}
+        <TextArea label="Tasks" name="tasks" value={experience.tasks}
                   onChange={value => this.onChange('tasks', value)}/>
 
-        <TextInput label="Methodology" type="text" name="methodology" value={this.props.experience.methodology}
+        <TextInput label="Methodology" type="text" name="methodology" value={experience.methodology}
                    onChange={value => this.onChange('methodology', value)}/>
-        <TextInput label="Tools" type="text" name="tools" value={this.props.experience.tools}
+        <TextInput label="Tools" type="text" name="tools" value={experience.tools}
                    onChange={value => this.onChange('tools', value)}/>
         <Toolbar>
-          <PrimaryButton type="button" onClick={this.props.onRemove}>
-            Remove experience
-          </PrimaryButton>
+          <div style={{alignSelf: 'flex-start'}}>
+            {index !== 0 && <SecondaryButton type="button" onClick={this.moveUp}>
+              ⬆ Move up
+            </SecondaryButton>}
+            {index !== amountOfExperiences - 1 &&
+            <SecondaryButton type="button" onClick={this.moveDown}>
+              ⬇ Move down
+            </SecondaryButton>}
+          </div>
+          <SecondaryButton type="button" onClick={this.remove}>
+            Remove this experience
+          </SecondaryButton>
         </Toolbar>
       </Container>
     )
   }
 }
+
+
+export default connect(
+  (state, props) => ({
+    experience: state.professionalExperiences[props.index],
+    amountOfExperiences: state.professionalExperiences.length,
+  }),
+  dispatch => bindActionCreators({
+    updateExperienceAtIndex,
+    removeExperienceAtIndex,
+    moveExperienceAtIndexUp,
+    moveExperienceAtIndexDown
+  }, dispatch)
+)(ProfessionalExperience)
+
