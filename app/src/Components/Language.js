@@ -3,17 +3,12 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import styled from 'styled-components'
-import {removeLanguageAtIndex, setLanguageLevelForIndex} from '../reducers/languages'
-import SecondaryButton from './SecondaryButton'
+import {setLanguageLevelForIndex} from '../reducers/languages'
 
 const Container = styled.div`
   padding: 10px 15px;
   display: flex;
   align-items: center;
-`
-
-const RemoveButton = styled(SecondaryButton)`
- margin-left: 15px;
 `
 
 const SelectContainer = styled.div`
@@ -26,12 +21,7 @@ class Language extends Component {
     level: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
 
-    removeLanguageAtIndex: PropTypes.func.isRequired,
     setLanguageLevelForIndex: PropTypes.func.isRequired
-  }
-
-  removeLanguage = () => {
-    this.props.removeLanguageAtIndex(this.props.index)
   }
 
   onLanguageChanged = event => {
@@ -60,7 +50,6 @@ class Language extends Component {
 export default connect(
   () => ({}),
   dispatch => bindActionCreators({
-    removeLanguageAtIndex,
     setLanguageLevelForIndex
   }, dispatch)
 )(Language)
