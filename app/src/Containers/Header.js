@@ -7,8 +7,6 @@ import Beta from '../Components/Beta'
 
 import PrimaryButton from '../Components/PrimaryButton'
 import HeaderContainer from '../Components/Header'
-import fileDownload from 'js-file-download'
-import axios from 'axios/index'
 import SecondaryButton from '../Components/SecondaryButton'
 import {reset as resetBasicInfo} from '../reducers/basicInfo'
 import {reset as resetProfessionalExperiences} from '../reducers/professionalExperiences'
@@ -16,6 +14,7 @@ import {reset as resetMiscellaneous} from '../reducers/miscellaneous'
 import {reset as resetSkillsAndTrainings} from '../reducers/skillsAndTrainings'
 import {reset as resetAcademicBackground} from '../reducers/academicBackground'
 import {reset as resetLanguages} from '../reducers/languages'
+import {generatePDF} from "../reducers/PDFGenerator";
 
 const ButtonsContainer = styled.div`
   button {
@@ -33,61 +32,12 @@ const Link = styled.a`
 
 class Header extends Component {
   static propTypes = {
-    basicInfo: PropTypes.shape({
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-      position: PropTypes.string.isRequired,
-      executiveSummary: PropTypes.string.isRequired
-    }).isRequired,
-    professionalExperiences: PropTypes.arrayOf(PropTypes.shape({
-      companyName: PropTypes.string.isRequired,
-      role: PropTypes.string,
-      tasks: PropTypes.string,
-      methodology: PropTypes.string,
-      tools: PropTypes.string,
-      period: PropTypes.string,
-    })).isRequired,
-    miscellaneous: PropTypes.string,
-    skillsAndTrainings: PropTypes.string,
-    academicBackground: PropTypes.string,
-    languages: PropTypes.arrayOf(PropTypes.shape({
-      languageName: PropTypes.string.isRequired,
-      level: PropTypes.string.isRequired,
-    })),
-
     resetBasicInfo: PropTypes.func.isRequired,
     resetProfessionalExperiences: PropTypes.func.isRequired,
     resetMiscellaneous: PropTypes.func.isRequired,
     resetSkillsAndTrainings: PropTypes.func.isRequired,
     resetAcademicBackground: PropTypes.func.isRequired,
     resetLanguages: PropTypes.func.isRequired,
-  }
-
-  generateCV = () => {
-    const data = {
-      ...this.props.basicInfo,
-      experiences: this.props.professionalExperiences,
-      miscellaneous: this.props.miscellaneous,
-      skillsAndTrainings: this.props.skillsAndTrainings,
-      academicBackground: this.props.academicBackground,
-      languages: this.props.languages,
-    };
-
-    axios({
-      method: 'post',
-      url: '/generate',
-      data: data,
-      responseType: 'arraybuffer'
-    }).then(
-      response => {
-        const date = new Date().toISOString().slice(0,10).replace(/-/g,"")
-        // Naming convention: Firstname Lastname - CV Movify - Position - YYYYMMDD
-        fileDownload(response.data, `${this.props.basicInfo.firstName} ${this.props.basicInfo.lastName} - CV Movify - ${this.props.basicInfo.position} - ${date}.docx`)
-      },
-      err => {
-        console.error(err)
-      }
-    )
   }
 
   reset = () => {
@@ -107,7 +57,7 @@ class Header extends Component {
         <ButtonsContainer>
           <Link href="mailto:application.form.feedback@movify.be">Send Feedback</Link>
           <SecondaryButton onClick={this.reset}>RESET</SecondaryButton>
-          <PrimaryButton onClick={this.generateCV}>GENERATE</PrimaryButton>
+          <PrimaryButton onClick={this.props.generatePDF}>GENERATE</PrimaryButton>
         </ButtonsContainer>
       </HeaderContainer>
     )
@@ -130,5 +80,6 @@ export default connect(
     resetSkillsAndTrainings,
     resetAcademicBackground,
     resetLanguages,
+    generatePDF,
   }, dispatch)
 )(Header)
