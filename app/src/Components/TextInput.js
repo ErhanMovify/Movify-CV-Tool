@@ -20,11 +20,18 @@ export const Label = styled.label`
   color: ${p => p.theme.colors.main};
 `
 
+export const Optional = styled.span`
+  font-size: 8pt;
+  color: #CCC;
+  font-style: italic;
+`;
+
 export default class TextInput extends Component {
 
   static propTypes = {
     label: PropTypes.string,
     onChange: PropTypes.func,
+    required: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -35,12 +42,15 @@ export default class TextInput extends Component {
   onChange = event => this.props.onChange(event.target.value)
 
   render() {
-    const {label, onChange, ...props} = this.props;
+    const {label, onChange, required, ...props} = this.props;
     const id = uuid.v4();
     return (
       <Container>
-        <Label htmlFor={id}>{label}</Label>
-        <Input id={id} type="text" onChange={this.onChange} {...props}/>
+        <Label htmlFor={id}>
+          {label}
+          {!required && <Optional><br/>optional</Optional>}
+        </Label>
+        <Input id={id} type="text" onChange={this.onChange} required={required} {...props}/>
       </Container>
     )
   }

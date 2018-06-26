@@ -32,18 +32,21 @@ class BasicInfo extends Component {
             name="firstName"
             value={this.props.firstName}
             onChange={this.props.setFirstName}
+            required
           />
           <TextInput
             label="Last name"
             name="lastName"
             value={this.props.lastName}
             onChange={this.props.setLastName}
+            required
           />
           <TextInput
             label="Position"
             name="position"
             value={this.props.position}
             onChange={this.props.setPosition}
+            required
           />
         </Fieldset>
         <Fieldset legend="Executive summary">
@@ -52,6 +55,7 @@ class BasicInfo extends Component {
             height={170}
             value={this.props.executiveSummary}
             onChange={this.props.setExecutiveSummary}
+            required
           />
         </Fieldset>
       </Card>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import uuid from 'uuid'
 
-import {Container, Label} from './TextInput'
+import {Container, Label, Optional} from './TextInput'
 
 const TextArea = styled.textarea`
   flex-grow: 1;
@@ -17,6 +17,7 @@ export default class Textarea extends React.Component {
     label: PropTypes.string,
     height: PropTypes.number,
     onChange: PropTypes.func,
+    required: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -28,13 +29,17 @@ export default class Textarea extends React.Component {
   onChange = event => this.props.onChange(event.target.value)
 
   render() {
-    const {label, onChange, height, ...props} = this.props
+    const {label, onChange, height, required, ...props} = this.props
     const id = uuid.v4();
 
     return (
       <Container>
-        {label && <Label htmlFor={id}>{label}</Label>}
-        <TextArea id={id} onChange={this.onChange} height={height} {...props}/>
+        {label && <Label htmlFor={id}>
+          {label}
+          {!required && <Optional><br/>optional</Optional>}
+          </Label>
+        }
+        <TextArea id={id} onChange={this.onChange} height={height} required={required} {...props}/>
       </Container>
     )
   }
