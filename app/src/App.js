@@ -17,6 +17,15 @@ const Form = styled.form`
   padding-bottom: 40px;
 `
 
+const Note = styled.form`
+  max-width: 900px;
+  padding: 0 40px;
+  margin: 20px auto;
+  color: #333;
+  font-size: 11pt;
+  font-style: italic;
+`;
+
 class App extends Component {
   render() {
     return (
@@ -24,6 +33,9 @@ class App extends Component {
         <PageContainer>
           <div>
             <Header/>
+            <Note>
+              Note: This form is automatically saved locally on your computer as you are typing. You can close this window and come back at any time :)
+            </Note>
             <Form>
               <BasicInfo/>
               <ProfessionalExperiences/>
