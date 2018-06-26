@@ -5,10 +5,9 @@ import PropTypes from 'prop-types'
 
 import Card from '../Components/Card'
 import Fieldset from '../Components/Fieldset'
-import Toolbar from '../Components/Toolbar'
-import PrimaryButton from '../Components/PrimaryButton'
 import ProfessionalExperience from '../Components/ProfessionalExperience'
-import {addExperience} from '../reducers/professionalExperiences'
+import {addExperience, moveExperienceAtIndexDown, moveExperienceAtIndexUp, removeExperienceAtIndex} from '../reducers/professionalExperiences'
+import ReorderableComponentsList from "../Components/ReorderableComponentsList";
 
 class ProfessionalExperiences extends Component {
 
@@ -23,21 +22,24 @@ class ProfessionalExperiences extends Component {
     })).isRequired,
 
     addExperience: PropTypes.func.isRequired,
+    moveExperienceAtIndexDown: PropTypes.func.isRequired,
+    moveExperienceAtIndexUp: PropTypes.func.isRequired,
+    removeExperienceAtIndex: PropTypes.func.isRequired,
   }
 
   render() {
     return (
       <Card>
         <Fieldset legend="Professional experiences:">
-          <Toolbar>
-            <PrimaryButton type="button" onClick={this.props.addExperience}>+ Add a new experience</PrimaryButton>
-          </Toolbar>
-          {this.props.experiences.map((_, index) => (
-              <div key={index}>
-                <hr/>
-                <ProfessionalExperience index={index}/>
-              </div>
-          ))}
+          <ReorderableComponentsList
+            itemTypeLabel={"experience"}
+            list={this.props.experiences}
+            addItem={this.props.addExperience}
+            ListItemComponent={ProfessionalExperience}
+            removeItemAtIndex={this.props.removeExperienceAtIndex}
+            moveDownItemAtIndex={this.props.moveExperienceAtIndexDown}
+            moveUpItemAtIndex={this.props.moveExperienceAtIndexUp}
+          />
         </Fieldset>
       </Card>
     )
@@ -49,6 +51,9 @@ export default connect(
     experiences: state.professionalExperiences
   }),
   dispatch => bindActionCreators({
-    addExperience
+    addExperience,
+    moveExperienceAtIndexDown,
+    moveExperienceAtIndexUp,
+    removeExperienceAtIndex
   }, dispatch)
 )(ProfessionalExperiences)

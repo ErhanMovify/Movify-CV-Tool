@@ -4,24 +4,39 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import Card from '../Components/Card'
 import Fieldset from '../Components/Fieldset'
-import Textarea from '../Components/Textarea'
-import {setAcademicBackground} from '../reducers/academicBackground'
+import {addAcademicBackground,
+  removeAcademicBackgroundAtIndex,
+  updateBackgroundAtIndex,
+  moveBackgroundAtIndexUp,
+  moveBackgroundAtIndexDown} from '../reducers/academicBackground'
+
+import AcademicBackgroundComponent from '../Components/AcademicBackground'
+import ReorderableComponentsList from "../Components/ReorderableComponentsList";
 
 class AcademicBackground extends Component {
 
   static propTypes = {
-    academicBackground: PropTypes.string.isRequired,
+    academicBackground: PropTypes.array.isRequired,
 
-    setAcademicBackground: PropTypes.func.isRequired,
+    addAcademicBackground: PropTypes.func.isRequired,
+    removeAcademicBackgroundAtIndex: PropTypes.func.isRequired,
+    updateBackgroundAtIndex: PropTypes.func.isRequired,
+    moveBackgroundAtIndexUp: PropTypes.func.isRequired,
+    moveBackgroundAtIndexDown: PropTypes.func.isRequired,
   }
 
   render() {
     return (
       <Card>
         <Fieldset legend="Academic background:">
-          <Textarea
-            value={this.props.academicBackground}
-            onChange={this.props.setAcademicBackground}
+          <ReorderableComponentsList
+            itemTypeLabel={"background"}
+            list={this.props.academicBackground}
+            addItem={this.props.addAcademicBackground}
+            ListItemComponent={AcademicBackgroundComponent}
+            removeItemAtIndex={this.props.removeAcademicBackgroundAtIndex}
+            moveDownItemAtIndex={this.props.moveBackgroundAtIndexDown}
+            moveUpItemAtIndex={this.props.moveBackgroundAtIndexUp}
           />
         </Fieldset>
       </Card>
@@ -34,6 +49,10 @@ export default connect(
     academicBackground: state.academicBackground
   }),
   dispatch => bindActionCreators({
-    setAcademicBackground,
+    addAcademicBackground,
+    removeAcademicBackgroundAtIndex,
+    updateBackgroundAtIndex,
+    moveBackgroundAtIndexUp,
+    moveBackgroundAtIndexDown,
   }, dispatch)
 )(AcademicBackground)
