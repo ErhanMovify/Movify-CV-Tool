@@ -27,7 +27,7 @@ export default class ReorderableComponentsList extends Component {
     return (
       <div>
         <Toolbar>
-          <PrimaryButton type="button" onClick={addItem}>+ Add a new {itemTypeLabel}</PrimaryButton>)
+          <PrimaryButton type="button" onClick={addItem}>+ Add a new {itemTypeLabel}</PrimaryButton>
         </Toolbar>
         {list.map((item, index) => (
           <Container key={index}>

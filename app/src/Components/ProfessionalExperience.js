@@ -38,12 +38,14 @@ class ProfessionalExperience extends React.Component {
         <TextInput label="Period" type="text" name="period" value={experience.period}
                    onChange={value => this.onChange('period', value)} required/>
         <TextArea label="Tasks" name="tasks" value={experience.tasks}
-                  onChange={value => this.onChange('tasks', value)} required/>
-
+                  onChange={value => this.onChange('tasks', value)} required
+        help="If you have done major projects in the same company, do not hesitate to split them into different experiences for each project.<br/><br/>For each project, give the context, the tasks that you did, and the outcome of the project."/>
         <TextInput label="Methodology" type="text" name="methodology" value={experience.methodology}
-                   onChange={value => this.onChange('methodology', value)}/>
+                   onChange={value => this.onChange('methodology', value)}
+        help="Tell us more about the methodology used there (Agile, Scrum, Kanban, etc.)"/>
         <TextInput label="Tools" type="text" name="tools" value={experience.tools}
-                   onChange={value => this.onChange('tools', value)}/>
+                   onChange={value => this.onChange('tools', value)}
+        help="Tell us more about the tools you were using (Sketch, Photoshop, Git, Xcode, Android Studio etc.)"/>
       </div>
     )
   }

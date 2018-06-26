@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import uuid from 'uuid'
+import Helper from "./Helper";
 
 export const Container = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ export default class TextInput extends Component {
     label: PropTypes.string,
     onChange: PropTypes.func,
     required: PropTypes.bool,
+    help: PropTypes.string,
   }
 
   static defaultProps = {
@@ -42,11 +44,12 @@ export default class TextInput extends Component {
   onChange = event => this.props.onChange(event.target.value)
 
   render() {
-    const {label, onChange, required, ...props} = this.props;
+    const {label, onChange, required, help, ...props} = this.props;
     const id = uuid.v4();
     return (
       <Container>
         <Label htmlFor={id}>
+          {help && <Helper text={help}/>}
           {label}
           {!required && <Optional><br/>optional</Optional>}
         </Label>

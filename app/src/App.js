@@ -5,6 +5,7 @@ import Languages from './Containers/Languages'
 import Miscellaneous from './Containers/Miscellaneous'
 import ProfessionalExperiences from './Containers/ProfessionalExperiences'
 import SkillsAndTrainings from './Containers/SkillsAndTrainings'
+import ReactTooltip from 'react-tooltip'
 
 import theme from './theme'
 import Header from './Containers/Header'
@@ -45,6 +46,7 @@ class App extends Component {
               <Miscellaneous/>
             </Form>
           </div>
+          <ReactTooltip multiline/>
         </PageContainer>
       </ThemeProvider>
     )

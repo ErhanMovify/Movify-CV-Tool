@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import uuid from 'uuid'
 
 import {Container, Label, Optional} from './TextInput'
+import Helper from "./Helper";
 
 const TextArea = styled.textarea`
   flex-grow: 1;
@@ -18,6 +19,7 @@ export default class Textarea extends React.Component {
     height: PropTypes.number,
     onChange: PropTypes.func,
     required: PropTypes.bool,
+    help: PropTypes.string,
   }
 
   static defaultProps = {
@@ -29,12 +31,13 @@ export default class Textarea extends React.Component {
   onChange = event => this.props.onChange(event.target.value)
 
   render() {
-    const {label, onChange, height, required, ...props} = this.props
+    const {label, onChange, height, required, help, ...props} = this.props
     const id = uuid.v4();
 
     return (
       <Container>
         {label && <Label htmlFor={id}>
+          {help && <Helper text={help}/>}
           {label}
           {!required && <Optional><br/>optional</Optional>}
           </Label>
