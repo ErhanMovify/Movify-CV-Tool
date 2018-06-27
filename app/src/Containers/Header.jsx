@@ -17,6 +17,8 @@ import * as languagesActions from '../reducers/languages';
 import * as PDFGeneratorActions from '../reducers/PDFGenerator';
 
 const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: baseline;
   button {
     margin: 0 10px;
   }
