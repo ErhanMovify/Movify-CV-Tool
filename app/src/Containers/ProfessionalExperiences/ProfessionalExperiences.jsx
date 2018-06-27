@@ -10,7 +10,7 @@ import * as professionalExperiencesActions from '../../reducers/professionalExpe
 import ProfessionalExperience from './ProfessionalExperience';
 
 const ProfessionalExperiences = ({
-  experiences,
+  amountOfExperiences,
   addExperience,
   removeExperienceAtIndex,
   moveExperienceAtIndexDown,
@@ -20,7 +20,7 @@ const ProfessionalExperiences = ({
     <Fieldset legend="Professional experiences:">
       <ReorderableComponentsList
         itemTypeLabel="experience"
-        list={experiences}
+        listLength={amountOfExperiences}
         addItem={addExperience}
         ListItemComponent={ProfessionalExperience}
         removeItemAtIndex={removeExperienceAtIndex}
@@ -32,14 +32,7 @@ const ProfessionalExperiences = ({
 );
 
 ProfessionalExperiences.propTypes = {
-  experiences: PropTypes.arrayOf(PropTypes.shape({
-    companyName: PropTypes.string.isRequired,
-    role: PropTypes.string,
-    tasks: PropTypes.string,
-    methodology: PropTypes.string,
-    tools: PropTypes.string,
-    period: PropTypes.string,
-  })).isRequired,
+  amountOfExperiences: PropTypes.number.isRequired,
   addExperience: PropTypes.func.isRequired,
   moveExperienceAtIndexDown: PropTypes.func.isRequired,
   moveExperienceAtIndexUp: PropTypes.func.isRequired,
@@ -48,7 +41,7 @@ ProfessionalExperiences.propTypes = {
 
 export default connect(
   state => ({
-    experiences: state.professionalExperiences,
+    amountOfExperiences: state.professionalExperiences.length,
   }),
   dispatch => bindActionCreators({
     addExperience: professionalExperiencesActions.addExperience,

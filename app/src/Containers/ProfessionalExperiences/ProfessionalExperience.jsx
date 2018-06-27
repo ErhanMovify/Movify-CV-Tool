@@ -9,7 +9,7 @@ import * as professionalExperiencesActions from '../../reducers/professionalExpe
 
 class ProfessionalExperience extends React.Component {
   static propTypes = {
-    data: PropTypes.shape({
+    experience: PropTypes.shape({
       companyName: PropTypes.string,
       role: PropTypes.string,
       methodology: PropTypes.string,
@@ -22,14 +22,14 @@ class ProfessionalExperience extends React.Component {
   };
 
   onChange = (field, value) => {
-    const { data, index, updateExperienceAtIndex } = this.props;
-    const experience = { ...data };
-    experience[field] = value;
-    updateExperienceAtIndex(experience, index);
+    const { experience, index, updateExperienceAtIndex } = this.props;
+    const newExperience = { ...experience };
+    newExperience[field] = value;
+    updateExperienceAtIndex(newExperience, index);
   };
 
   render() {
-    const { data: experience } = this.props;
+    const { experience } = this.props;
     return (
       <div>
         <TextInput
@@ -86,7 +86,11 @@ class ProfessionalExperience extends React.Component {
 }
 
 
-export default connect(() => ({}),
+export default connect(
+  (state, { index }) => ({
+    experience: state.professionalExperiences[index],
+  }),
   dispatch => bindActionCreators({
     updateExperienceAtIndex: professionalExperiencesActions.updateExperienceAtIndex,
-  }, dispatch))(ProfessionalExperience);
+  }, dispatch),
+)(ProfessionalExperience);

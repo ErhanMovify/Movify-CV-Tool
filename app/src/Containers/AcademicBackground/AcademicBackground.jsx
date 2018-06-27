@@ -11,7 +11,7 @@ import AcademicDegree from './AcademicDegree';
 import ReorderableComponentsList from '../../components/ReorderableComponentsList';
 
 const AcademicBackground = ({
-  academicBackground,
+  amountOfBackgrounds,
   addAcademicBackground,
   removeAcademicBackgroundAtIndex,
   moveBackgroundAtIndexUp,
@@ -21,7 +21,7 @@ const AcademicBackground = ({
     <Fieldset legend="Academic background:">
       <ReorderableComponentsList
         itemTypeLabel="background"
-        list={academicBackground}
+        listLength={amountOfBackgrounds}
         addItem={addAcademicBackground}
         ListItemComponent={AcademicDegree}
         removeItemAtIndex={removeAcademicBackgroundAtIndex}
@@ -33,7 +33,7 @@ const AcademicBackground = ({
 );
 
 AcademicBackground.propTypes = {
-  academicBackground: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  amountOfBackgrounds: PropTypes.number.isRequired,
   addAcademicBackground: PropTypes.func.isRequired,
   removeAcademicBackgroundAtIndex: PropTypes.func.isRequired,
   moveBackgroundAtIndexUp: PropTypes.func.isRequired,
@@ -42,7 +42,7 @@ AcademicBackground.propTypes = {
 
 export default connect(
   state => ({
-    academicBackground: state.academicBackground,
+    amountOfBackgrounds: state.academicBackground.length,
   }),
   dispatch => bindActionCreators({
     addAcademicBackground: academicBackgroundActions.addAcademicBackground,

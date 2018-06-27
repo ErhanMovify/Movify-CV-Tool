@@ -8,7 +8,7 @@ import * as academicBackgroundActions from '../../reducers/academicBackground';
 
 class AcademicDegree extends Component {
   static propTypes = {
-    data: PropTypes.shape({
+    background: PropTypes.shape({
       degree: PropTypes.string.isRequired,
       location: PropTypes.string.isRequired,
       period: PropTypes.string.isRequired,
@@ -20,14 +20,14 @@ class AcademicDegree extends Component {
   };
 
   onChange = (field, value) => {
-    const { data, index, updateBackgroundAtIndex } = this.props;
-    const background = { ...data };
-    background[field] = value;
-    updateBackgroundAtIndex(background, index);
+    const { background, index, updateBackgroundAtIndex } = this.props;
+    const newBackground = { ...background };
+    newBackground[field] = value;
+    updateBackgroundAtIndex(newBackground, index);
   };
 
   render() {
-    const { data: background } = this.props;
+    const { background } = this.props;
     return (
       <div>
         <TextInput
@@ -73,7 +73,11 @@ class AcademicDegree extends Component {
   }
 }
 
-export default connect(() => ({}),
+export default connect(
+  (state, { index }) => ({
+    background: state.academicBackground[index],
+  }),
   dispatch => bindActionCreators({
     updateBackgroundAtIndex: academicBackgroundActions.updateBackgroundAtIndex,
-  }, dispatch))(AcademicDegree);
+  }, dispatch),
+)(AcademicDegree);

@@ -11,50 +11,56 @@ const Container = styled.div`
 `;
 
 const ReorderableComponentsList = ({
-  list,
+  listLength,
   ListItemComponent,
   addItem,
   itemTypeLabel,
   removeItemAtIndex,
   moveUpItemAtIndex,
   moveDownItemAtIndex,
-}) => (
-  <div>
-    <Toolbar>
-      <PrimaryButton type="button" onClick={addItem}>
-        {`+ Add a new ${itemTypeLabel}`}
-      </PrimaryButton>
-    </Toolbar>
-    {list.map((item, index) => (
-      <Container key={JSON.stringify(item)}>
+}) => {
+  const elements = [];
+  for (let i = 0; i < listLength; i += 1) {
+    elements.push((
+      <Container key={i}>
         <hr />
-        <ListItemComponent data={item} index={index} />
+        <ListItemComponent index={i} />
         <Toolbar>
           <div style={{ float: 'left' }}>
-            <SecondaryButton type="button" onClick={() => removeItemAtIndex(index)}>
+            <SecondaryButton type="button" onClick={() => removeItemAtIndex(i)}>
               {`Remove this ${itemTypeLabel}`}
             </SecondaryButton>
           </div>
           <div>
-            {index !== 0 && (
-              <SecondaryButton type="button" onClick={() => moveUpItemAtIndex(index)}>
+            {i !== 0 && (
+              <SecondaryButton type="button" onClick={() => moveUpItemAtIndex(i)}>
                 ⬆ Move up
               </SecondaryButton>
             )}
-            {index !== list.length - 1 && (
-              <SecondaryButton type="button" onClick={() => moveDownItemAtIndex(index)}>
+            {i !== listLength - 1 && (
+              <SecondaryButton type="button" onClick={() => moveDownItemAtIndex(i)}>
                 ⬇ Move down
               </SecondaryButton>
             )}
           </div>
         </Toolbar>
       </Container>
-    ))}
-  </div>
-);
+    ));
+  }
+  return (
+    <div>
+      <Toolbar>
+        <PrimaryButton type="button" onClick={addItem}>
+          {`+ Add a new ${itemTypeLabel}`}
+        </PrimaryButton>
+      </Toolbar>
+      {elements}
+    </div>
+  );
+};
 
 ReorderableComponentsList.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  listLength: PropTypes.number.isRequired,
   ListItemComponent: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.func,
