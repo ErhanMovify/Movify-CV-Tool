@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import TrashCanIcon from 'react-icons/lib/fa/trash-o';
+
 import Toolbar from './Toolbar';
 import SecondaryButton from './Buttons/SecondaryButton';
 import PrimaryButton from './Buttons/PrimaryButton';
@@ -8,6 +10,10 @@ import PrimaryButton from './Buttons/PrimaryButton';
 const Container = styled.div`
   margin-bottom: 20px;
   margin-top: 20px;
+`;
+
+const StyledTrashCanIcon = styled(TrashCanIcon)`
+  margin-right: 5px;
 `;
 
 const ReorderableComponentsList = ({
@@ -28,6 +34,7 @@ const ReorderableComponentsList = ({
         <Toolbar>
           <div style={{ float: 'left' }}>
             <SecondaryButton type="button" onClick={() => removeItemAtIndex(i)}>
+              <StyledTrashCanIcon />
               {`Remove this ${itemTypeLabel}`}
             </SecondaryButton>
           </div>

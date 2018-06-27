@@ -6,6 +6,9 @@ export default styled.button`
   padding: 8px 16px;
   border-radius: 8px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   transition: all 300ms linear;
   
