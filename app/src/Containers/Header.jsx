@@ -12,7 +12,7 @@ import * as basicInfoActions from '../reducers/basicInfo';
 import * as professionalExperiencesActions from '../reducers/professionalExperiences';
 import * as miscellaneousActions from '../reducers/miscellaneous';
 import * as skillsAndTrainingsActions from '../reducers/skillsAndTrainings';
-import * as academicBackgroundActions from '../reducers/academicBackground';
+import * as academicBackgroundActions from '../reducers/academicBackgrounds';
 import * as languagesActions from '../reducers/languages';
 import * as PDFGeneratorActions from '../reducers/PDFGenerator';
 

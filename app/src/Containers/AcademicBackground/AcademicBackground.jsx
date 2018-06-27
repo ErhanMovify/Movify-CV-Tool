@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Card from '../../components/Card';
 import Fieldset from '../../components/Fieldset';
 
-import * as academicBackgroundActions from '../../reducers/academicBackground';
+import * as academicBackgroundActions from '../../reducers/academicBackgrounds';
 
 import AcademicDegree from './AcademicDegree';
 import ReorderableComponentsList from '../../components/ReorderableComponentsList';
@@ -42,7 +42,7 @@ AcademicBackground.propTypes = {
 
 export default connect(
   state => ({
-    amountOfBackgrounds: state.academicBackground.length,
+    amountOfBackgrounds: state.academicBackgrounds.length,
   }),
   dispatch => bindActionCreators({
     addAcademicBackground: academicBackgroundActions.addAcademicBackground,

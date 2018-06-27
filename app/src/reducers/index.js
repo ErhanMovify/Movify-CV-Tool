@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import academicBackground from './academicBackground';
 
+import academicBackgrounds from './academicBackgrounds';
 import basicInfo from './basicInfo';
 import languages from './languages';
 import miscellaneous from './miscellaneous';
@@ -13,7 +13,7 @@ export default combineReducers({
   professionalExperiences,
   miscellaneous,
   skillsAndTrainings,
-  academicBackground,
+  academicBackgrounds,
   languages,
   PDFGenerator,
 });

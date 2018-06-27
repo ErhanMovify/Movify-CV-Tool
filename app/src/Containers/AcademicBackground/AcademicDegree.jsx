@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import TextInput from '../../components/TextInput';
-import * as academicBackgroundActions from '../../reducers/academicBackground';
+import * as academicBackgroundActions from '../../reducers/academicBackgrounds';
 
 class AcademicDegree extends Component {
   static propTypes = {
@@ -75,7 +75,7 @@ class AcademicDegree extends Component {
 
 export default connect(
   (state, { index }) => ({
-    background: state.academicBackground[index],
+    background: state.academicBackgrounds[index],
   }),
   dispatch => bindActionCreators({
     updateBackgroundAtIndex: academicBackgroundActions.updateBackgroundAtIndex,
