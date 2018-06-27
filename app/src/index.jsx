@@ -14,7 +14,7 @@ import theme from './styles/Theme';
 // Import our global styles
 import './styles/Global';
 
-import MainContainer from './containers/MainContainer';
+import MainContainer from './Containers/MainContainer';
 
 const Index = () => (
   <Provider store={store}>
