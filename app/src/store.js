@@ -18,11 +18,7 @@ const persistedReducer = persistReducer({
 const store = createStore(
   persistedReducer,
   {},
-  compose(
-    applyMiddleware(thunk),
-    // eslint-disable-next-line no-underscore-dangle
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  ),
+  compose(applyMiddleware(thunk)),
 );
 
 // Create a redux-persist persistor for our store
