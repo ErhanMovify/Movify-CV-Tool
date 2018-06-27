@@ -6,7 +6,6 @@ import QuestionMarkIcon from 'react-icons/lib/fa/question-circle-o';
 
 const Container = styled.span`
   color: ${p => p.theme.colors.main};
-  height: 30px;
   width: 20px;
   display: inline-flex;
   justify-content: center;

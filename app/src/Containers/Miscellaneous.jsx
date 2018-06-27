@@ -6,9 +6,11 @@ import Card from '../components/Card';
 import Fieldset from '../components/Fieldset';
 import Textarea from '../components/Textarea';
 import * as miscellaneousActions from '../reducers/miscellaneous';
+import Helper from '../components/Helper';
 
 const Miscellaneous = ({ miscellaneous, setMiscellaneousInfo }) => (
   <Card>
+    <Helper text="Tell us what you like to do.<br/>Playing hockey, listening to podcasts, playing video games, going to the cinema to watch old movies, etc." />
     <Fieldset legend="Miscellaneous:">
       <Textarea
         value={miscellaneous}
