@@ -62,7 +62,7 @@ class ProfessionalExperience extends React.Component {
           value={experience.tasks}
           onChange={value => this.onChange('tasks', value)}
           required
-          help="If you have done major projects in the same company, do not hesitate to split them into different experiences for each project.<br/><br/>For each project, give the context, the tasks that you did, and the outcome of the project."
+          help="If you have done major projects in the same company, do not hesitate to split them into different experiences for each project.<br/><br/>For each project, you can give the context, the tasks that you did, and the outcome of the project."
         />
         <TextInput
           label="Methodology"
@@ -70,7 +70,7 @@ class ProfessionalExperience extends React.Component {
           name="methodology"
           value={experience.methodology}
           onChange={value => this.onChange('methodology', value)}
-          help="Tell us more about the methodology used there (Agile, Scrum, Kanban, etc.)"
+          help="Tell us more about the methodology used there (Agile, Scrum, Kanban, Waterfall, etc.)"
         />
         <TextInput
           label="Tools"
@@ -78,7 +78,7 @@ class ProfessionalExperience extends React.Component {
           name="tools"
           value={experience.tools}
           onChange={value => this.onChange('tools', value)}
-          help="Tell us more about the tools you were using (Sketch, Photoshop, Git, Xcode, Android Studio etc.)"
+          help="Tell us more about the tools you were using (Sketch, Photoshop, Git, Xcode, Android Studio, PowerPoint, Excel, etc.)"
         />
       </div>
     );
