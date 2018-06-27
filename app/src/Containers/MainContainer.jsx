@@ -16,7 +16,8 @@ import faviconImage from '../images/favicon.png';
 const PageContainer = styled.div`
   min-height: 100vh;
   width: 100%;
-  background-color: #f0f0f0;
+  max-width: 880px;
+  margin: 0 auto;
   padding-top: 80px;
   * {
     outline-color: ${p => p.theme.colors.main};

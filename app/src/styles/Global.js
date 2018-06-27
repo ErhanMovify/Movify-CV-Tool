@@ -6,4 +6,8 @@ injectGlobal`
 * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
+
+body {
+  background-color: #f0f0f0;
+}
 `;
