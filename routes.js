@@ -5,7 +5,7 @@ const path = require('path')
 const router = express.Router()
 
 router.get('/', function (req, res, next) {
-  res.sendfile(path.join(__dirname, '..', 'app', 'build', 'index.html'));
+  res.sendfile(path.join(__dirname, 'app', 'dist', 'index.html'));
 })
 
 router.post('/generate', function(req, res, next){

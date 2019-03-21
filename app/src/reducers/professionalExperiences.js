@@ -6,41 +6,64 @@ const DEFAULT_EXPERIENCE = {
   tasks: '',
   methodology: '',
   tools: '',
-  period: ''
-}
+  period: '',
+};
 
-const RESET = "PROFESSIONAL_EXPERIENCES_RESET";
-const ADD_EXPERIENCE = "PROFESSIONAL_EXPERIENCES_ADD_EXPERIENCE"
-const REMOVE_EXPERIENCE = "PROFESSIONAL_EXPERIENCES_REMOVE_EXPERIENCE"
-const UPDATE_EXPERIENCE = "PROFESSIONAL_EXPERIENCES_UPDATE_EXPERIENCE"
+const RESET = 'PROFESSIONAL_EXPERIENCES_RESET';
+const ADD_EXPERIENCE = 'PROFESSIONAL_EXPERIENCES_ADD_EXPERIENCE';
+const REMOVE_EXPERIENCE = 'PROFESSIONAL_EXPERIENCES_REMOVE_EXPERIENCE';
+const UPDATE_EXPERIENCE = 'PROFESSIONAL_EXPERIENCES_UPDATE_EXPERIENCE';
+const MOVE_EXPERIENCE_UP = 'MOVE_EXPERIENCE_UP';
+const MOVE_EXPERIENCE_DOWN = 'MOVE_EXPERIENCE_DOWN';
 
-const professionalExperiences = (state = initialState, {type, payload}) => {
+const professionalExperiences = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_EXPERIENCE:
       return [
-        {...DEFAULT_EXPERIENCE},
+        { ...DEFAULT_EXPERIENCE },
         ...state,
-      ]
+      ];
     case REMOVE_EXPERIENCE:
       return [
-        ...state.filter((experience, index) => index !== payload)
-        ]
+        ...state.filter((experience, index) => index !== payload),
+      ];
     case UPDATE_EXPERIENCE:
       return [
-        ...state.map((experience, index) => index === payload.index ? {...payload.experience} : experience)
-      ]
+        ...state.map((exp, index) => (index === payload.index ? { ...payload.experience } : exp)),
+      ];
     case RESET:
       return [
         ...initialState,
-      ]
+      ];
+    case MOVE_EXPERIENCE_UP:
+      return [
+        ...state.map((element, index) => {
+          if (index === payload - 1) return state[payload];
+          if (index === payload) return state[payload - 1];
+          return element;
+        }),
+      ];
+    case MOVE_EXPERIENCE_DOWN:
+      return [
+        ...state.map((element, index) => {
+          if (index === payload + 1) return state[payload];
+          if (index === payload) return state[payload + 1];
+          return element;
+        }),
+      ];
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default professionalExperiences;
 
-export const addExperience = () => ({type: ADD_EXPERIENCE});
-export const removeExperienceAtIndex = index => ({type: REMOVE_EXPERIENCE, payload: index})
-export const updateExperienceAtIndex = (experience, index) => ({type: UPDATE_EXPERIENCE, payload: {index, experience}})
-export const reset = () => ({type: RESET})
+export const addExperience = () => ({ type: ADD_EXPERIENCE });
+export const removeExperienceAtIndex = index => ({ type: REMOVE_EXPERIENCE, payload: index });
+export const updateExperienceAtIndex = (experience, index) => ({
+  type: UPDATE_EXPERIENCE,
+  payload: { index, experience },
+});
+export const moveExperienceAtIndexUp = index => ({ type: MOVE_EXPERIENCE_UP, payload: index });
+export const moveExperienceAtIndexDown = index => ({ type: MOVE_EXPERIENCE_DOWN, payload: index });
+export const reset = () => ({ type: RESET });

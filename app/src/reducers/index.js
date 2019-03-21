@@ -1,17 +1,19 @@
-import {combineReducers} from 'redux'
-import academicBackground from './academicBackground'
+import { combineReducers } from 'redux';
 
-import basicInfo from './basicInfo'
-import languages from './languages'
-import miscellaneous from './miscellaneous'
-import professionalExperiences from './professionalExperiences'
-import skillsAndTrainings from './skillsAndTrainings'
+import academicBackgrounds from './academicBackgrounds';
+import basicInfo from './basicInfo';
+import languages from './languages';
+import miscellaneous from './miscellaneous';
+import professionalExperiences from './professionalExperiences';
+import skillsAndTrainings from './skillsAndTrainings';
+import PDFGenerator from './PDFGenerator';
 
 export default combineReducers({
   basicInfo,
   professionalExperiences,
   miscellaneous,
   skillsAndTrainings,
-  academicBackground,
+  academicBackgrounds,
   languages,
-})
+  PDFGenerator,
+});
