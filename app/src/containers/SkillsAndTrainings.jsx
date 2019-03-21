@@ -10,7 +10,7 @@ import * as skillsAndTrainingsActions from '../reducers/skillsAndTrainings';
 
 const SkillsAndTrainings = ({ skillsAndTrainings, setSkillsAndTrainings }) => (
   <Card>
-    <Fieldset legend="Skills and trainings:">
+    <Fieldset legend="Skills and trainings:" hint="Add one per line">
       <Textarea
         value={skillsAndTrainings}
         onChange={setSkillsAndTrainings}

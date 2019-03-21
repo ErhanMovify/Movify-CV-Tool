@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Label } from './TextInput';
 
 const FieldsetContainer = styled.fieldset`
   margin-bottom: 30px;
@@ -10,27 +11,38 @@ const FieldsetContainer = styled.fieldset`
 const Legend = styled.legend`
   text-transform: uppercase;
   color: ${p => p.theme.colors.main};
-  margin-bottom: 1.5em;
-  margin-top: 1em;
   font-size: 16pt;
   letter-spacing: 1px;
 `;
 
-const Fieldset = ({ legend, children }) => (
+const Container = styled.div`
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+`;
+
+const Fieldset = ({ hint, legend, children }) => (
   <FieldsetContainer>
-    <Legend>
-      {legend}
-    </Legend>
+    <Container>
+      <Legend>
+        {legend}
+      </Legend>
+      {!!hint && <Label>{hint}</Label>}
+    </Container>
     {children}
   </FieldsetContainer>
 );
 
 Fieldset.propTypes = {
+  hint: PropTypes.string,
   legend: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+};
+
+Fieldset.defaultProps = {
+  hint: '',
 };
 
 export default Fieldset;
