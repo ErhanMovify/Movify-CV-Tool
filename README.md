@@ -52,7 +52,7 @@ npm start
 
 ### Deploy
 
-Start SSH session on OVH server [vps542839.ovh.net](vps542839.ovh.net).
+Start SSH session on OVH server [vps542839.ovh.net](http://vps542839.ovh.net).
 
 Pull changes on git repository.
 
