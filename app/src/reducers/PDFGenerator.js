@@ -1,5 +1,6 @@
 import axios from 'axios';
 import fileDownload from 'js-file-download';
+import { formatLanguages } from '../utils/format';
 
 const initialState = {
   isGeneratingPDF: false,
@@ -29,6 +30,7 @@ export default PDFGenerator;
 
 export const generatePDF = () => (dispatch, getState) => {
   const state = getState();
+  const formattedLanguages = formatLanguages(state.languages);
   dispatch({ type: STARTED_GENERATING_PDF });
   axios({
     method: 'post',
@@ -39,7 +41,7 @@ export const generatePDF = () => (dispatch, getState) => {
       miscellaneous: state.miscellaneous,
       skillsAndTrainings: state.skillsAndTrainings,
       academicBackgrounds: state.academicBackgrounds,
-      languages: state.languages,
+      languages: formattedLanguages,
       references: state.references,
     },
     responseType: 'arraybuffer',
