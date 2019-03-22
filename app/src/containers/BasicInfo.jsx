@@ -49,6 +49,7 @@ const BasicInfo = (
       <Textarea
         name="executiveSummary"
         height={170}
+        maxLength={2500}
         value={executiveSummary}
         onChange={setExecutiveSummary}
         required
