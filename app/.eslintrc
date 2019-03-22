@@ -5,6 +5,8 @@
     "browser": true
   },
   "rules": {
-    "max-len": [0]
+    "linebreak-style": ["error", "windows"],
+    "max-len": [0],
+    "react/jsx-one-expression-per-line": [{ "allow": "single-child" }]
   }
 }
