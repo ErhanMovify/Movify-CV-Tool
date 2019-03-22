@@ -6,6 +6,7 @@ import languages from './languages';
 import miscellaneous from './miscellaneous';
 import professionalExperiences from './professionalExperiences';
 import skillsAndTrainings from './skillsAndTrainings';
+import references from './references';
 import PDFGenerator from './PDFGenerator';
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
   skillsAndTrainings,
   academicBackgrounds,
   languages,
+  references,
   PDFGenerator,
 });

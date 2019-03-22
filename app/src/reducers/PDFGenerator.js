@@ -40,6 +40,7 @@ export const generatePDF = () => (dispatch, getState) => {
       skillsAndTrainings: state.skillsAndTrainings,
       academicBackgrounds: state.academicBackgrounds,
       languages: state.languages,
+      references: state.references,
     },
     responseType: 'arraybuffer',
   }).then(

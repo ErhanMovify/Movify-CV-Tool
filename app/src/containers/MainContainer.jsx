@@ -10,6 +10,7 @@ import Languages from './Languages/Languages';
 import Miscellaneous from './Miscellaneous';
 import ProfessionalExperiences from './ProfessionalExperiences/ProfessionalExperiences';
 import SkillsAndTrainings from './SkillsAndTrainings';
+import References from './References/References';
 
 import faviconImage from '../images/favicon.png';
 
@@ -46,6 +47,7 @@ const MainContainer = () => (
     <Languages />
     <SkillsAndTrainings />
     <Miscellaneous />
+    <References />
     <ReactTooltip multiline />
   </PageContainer>
 );
