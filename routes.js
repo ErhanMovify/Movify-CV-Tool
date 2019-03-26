@@ -1,5 +1,6 @@
 const express = require('express')
 const CVGenerator = require('./CVGenerator')
+const DropboxUploader = require('./DropboxUploader')
 const path = require('path')
 
 const router = express.Router()
@@ -10,6 +11,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/generate', function(req, res, next){
   const doc = CVGenerator.generateCVFromData(req.body);
+  DropboxUploader.uploadDocToDropbox(doc);
 
   res.status(200)
   res.end(doc)

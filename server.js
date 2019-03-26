@@ -5,6 +5,7 @@
 const app = require('./app')
 const debug = require('debug')
 const http = require('http')
+require('dotenv').config();
 
 const log = debug('movify-cv-tool:server')
 
