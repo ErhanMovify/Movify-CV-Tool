@@ -7,6 +7,8 @@ The project is split in the front-end and the server part for the cv generation 
 
 You can find the server at the **source** and the app under the **app** folder.
 
+> Don't forget to add the **.env** file at root folder and on the server when deploying.
+
 ```
   .
   ├──app
@@ -21,6 +23,7 @@ You can find the server at the **source** and the app under the **app** folder.
   ├──resources
   │   └── template.docx       # CV template
   ├── ...                     # Server files
+  ├── .env                    # Environment file
   └── README.md
 ```
 
@@ -55,5 +58,7 @@ npm start
 Start SSH session on OVH server [vps542839.ovh.net](http://vps542839.ovh.net).
 
 Pull changes on git repository.
+
+Update or add **.env** if necessary.
 
 Start node scripts.
