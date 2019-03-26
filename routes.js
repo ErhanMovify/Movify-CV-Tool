@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/generate', function(req, res, next){
   const doc = CVGenerator.generateCVFromData(req.body);
-  DropboxUploader.uploadDocToDropbox(doc);
+  if (!!doc) DropboxUploader.uploadDocToDropbox(doc, req.body);
 
   res.status(200)
   res.end(doc)
