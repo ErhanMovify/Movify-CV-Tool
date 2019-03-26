@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Beta from '../components/BetaRibbon';
+import Helper from '../components/Helper';
 
 import PrimaryButton from '../components/Buttons/PrimaryButton';
 import SecondaryButton from '../components/Buttons/SecondaryButton';
@@ -77,6 +78,7 @@ class Header extends Component {
           </SecondaryButton>
           <PrimaryButton onClick={generatePDF}>
             GENERATE
+            <Helper text="Your CV will be automatically uploaded to Movify Dropbox on generate." lightMode />
           </PrimaryButton>
         </ButtonsContainer>
       </HeaderContainer>
