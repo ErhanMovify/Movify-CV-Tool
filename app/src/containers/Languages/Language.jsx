@@ -68,10 +68,6 @@ class Language extends React.Component {
     updateLanguageAtIndex: PropTypes.func.isRequired,
   };
 
-  static defaultProps = {
-    isDefault: false,
-  };
-
   onChange = (field, value) => {
     const {
       language: {
@@ -102,7 +98,7 @@ class Language extends React.Component {
       <LanguageContainer>
         <LanguageName
           languageName={languageName}
-          isDefault={isDefault}
+          isDefault={!!isDefault}
           onChange={value => this.onChange('languageName', value)}
         />
         <SelectContainer>

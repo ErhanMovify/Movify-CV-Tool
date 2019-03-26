@@ -21,7 +21,7 @@ const Languages = ({ addLanguage, languagesCount }) => {
           {languages}
         </div>
       </Fieldset>
-      <Toolbar style={{ 'padding-bottom': '40px' }}>
+      <Toolbar style={{ paddingBottom: '40px' }}>
         <PrimaryButton type="button" onClick={() => addLanguage()}>
           + Add a new language
         </PrimaryButton>
