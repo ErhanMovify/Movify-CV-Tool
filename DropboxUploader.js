@@ -6,8 +6,8 @@ const sharedFolderPath = '/Movify Team Folder/Apply@Movify/';
 
 const getFileName = data => {
     const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-    // Naming convention: Firstname Lastname - CV Movify - Position - YYYYMMDD
-    return `CV Movify - ${data.firstName} ${data.lastName} - ${data.position} - ${date}.docx`;     
+    // Naming convention: CV Movify - Firstname Lastname - YYYYMMDD - Position
+    return `CV Movify - ${data.firstName} ${data.lastName} - ${date} - ${data.position}.docx`;     
 }
 
 
