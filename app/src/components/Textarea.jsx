@@ -39,10 +39,10 @@ const TextArea = ({
   required,
   help,
   maxLength,
-  value,
   ...props
 }) => {
   const id = uuid.v4();
+  const { value } = props;
   return (
     <TopContainer>
       <Container>
