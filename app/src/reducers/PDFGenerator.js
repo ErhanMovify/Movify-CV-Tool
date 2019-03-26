@@ -49,8 +49,8 @@ export const generatePDF = () => (dispatch, getState) => {
     (response) => {
       dispatch({ type: FINISHED_GENERATING_PDF });
       const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-      // Naming convention: Firstname Lastname - CV Movify - Position - YYYYMMDD
-      fileDownload(response.data, `CV Movify - ${state.basicInfo.firstName} ${state.basicInfo.lastName} - ${state.basicInfo.position} - ${date}.docx`);
+      // Naming convention: CV Movify - Firstname Lastname - YYYYMMDD - Position
+      fileDownload(response.data, `CV Movify - ${state.basicInfo.firstName} ${state.basicInfo.lastName} - ${date} - ${state.basicInfo.position}.docx`);
     },
   );
 };
