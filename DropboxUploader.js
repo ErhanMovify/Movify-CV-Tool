@@ -13,7 +13,7 @@ const getFileName = data => {
 
 module.exports = {
     uploadDocToDropbox(doc, data) {
-        const accessToken = process.env.REACT_APP_DROPBOX_ACCESS_TOKEN;
+        const accessToken = process.env.NODE_APP_DROPBOX_ACCESS_TOKEN;
         var dbx = new Dropbox({ accessToken , fetch });
 
         dbx.filesUpload({ path: sharedFolderPath + getFileName(data), contents: doc, mode: 'add', autorename: true })
