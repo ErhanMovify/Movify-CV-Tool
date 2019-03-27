@@ -19,7 +19,9 @@ const uploadFile = (file, accessToken) => {
 module.exports = {
     uploadDocToDropbox(doc, data) {
         const accessToken = process.env.NODE_APP_DROPBOX_ACCESS_TOKEN;
-        const folderId = 'id:m41NXAS4SBAAAAAAAACR7w';
+        const country = data.country || 'BE';
+        const folderId = country === 'LU' ? 'id:m41NXAS4SBAAAAAAAACR7w' : 'id:m41NXAS4SBAAAAAAAACR7w';
+
         const filePath = `${folderId}/${getFileName(data)}`;
         
         uploadFile({ data: doc, path: filePath }, accessToken);
