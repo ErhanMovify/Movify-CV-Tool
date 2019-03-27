@@ -17,8 +17,8 @@ const references = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_REFERENCE:
       return [
-        { ...DEFAULT_REFERENCE },
         ...state,
+        { ...DEFAULT_REFERENCE },
       ];
     case REMOVE_REFERENCE:
       return [

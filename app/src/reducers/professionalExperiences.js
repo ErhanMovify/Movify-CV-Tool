@@ -20,8 +20,8 @@ const professionalExperiences = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_EXPERIENCE:
       return [
-        { ...DEFAULT_EXPERIENCE },
         ...state,
+        { ...DEFAULT_EXPERIENCE },
       ];
     case REMOVE_EXPERIENCE:
       return [

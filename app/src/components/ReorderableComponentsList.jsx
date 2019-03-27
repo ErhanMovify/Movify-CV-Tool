@@ -56,12 +56,12 @@ const ReorderableComponentsList = ({
   }
   return (
     <div>
+      {elements}
       <Toolbar>
         <PrimaryButton type="button" onClick={addItem}>
           {`+ Add a new ${itemTypeLabel}`}
         </PrimaryButton>
       </Toolbar>
-      {elements}
     </div>
   );
 };

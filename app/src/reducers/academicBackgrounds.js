@@ -19,8 +19,8 @@ const academicBackgrounds = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_BACKGROUND:
       return [
-        { ...DEFAULT_BACKGROUND },
         ...state,
+        { ...DEFAULT_BACKGROUND },
       ];
     case REMOVE_BACKGROUND:
       return [
