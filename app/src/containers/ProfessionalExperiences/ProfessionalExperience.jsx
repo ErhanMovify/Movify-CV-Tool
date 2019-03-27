@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
 
 import TextInput from '../../components/TextInput';
 import TextArea from '../../components/Textarea';
@@ -20,6 +21,11 @@ class ProfessionalExperience extends React.Component {
     index: PropTypes.number.isRequired,
     updateExperienceAtIndex: PropTypes.func.isRequired,
   };
+
+  componentDidMount() {
+    // Re-bind tooltip
+    ReactTooltip.rebuild();
+  }
 
   onChange = (field, value) => {
     const { experience, index, updateExperienceAtIndex } = this.props;
