@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import Favicon from 'react-favicon';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Header from './Header';
 import AcademicBackground from './AcademicBackground/AcademicBackground';
@@ -38,6 +40,10 @@ const MainContainer = () => (
   <PageContainer>
     <Favicon url={faviconImage} />
     <Header />
+    <ToastContainer
+      className="toast-container"
+      toastClassName="dark-toast"
+    />
     <Note>
       Note: This form is automatically saved locally on your computer as you are typing. You can close this window and come back at any time :)
     </Note>
