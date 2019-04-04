@@ -15,6 +15,7 @@ import * as miscellaneousActions from '../reducers/miscellaneous';
 import * as skillsAndTrainingsActions from '../reducers/skillsAndTrainings';
 import * as academicBackgroundActions from '../reducers/academicBackgrounds';
 import * as languagesActions from '../reducers/languages';
+import * as referencesActions from '../reducers/references';
 import * as PDFGeneratorActions from '../reducers/PDFGenerator';
 
 const ButtonsContainer = styled.div`
@@ -41,6 +42,7 @@ class Header extends Component {
     resetSkillsAndTrainings: PropTypes.func.isRequired,
     resetAcademicBackground: PropTypes.func.isRequired,
     resetLanguages: PropTypes.func.isRequired,
+    resetReferences: PropTypes.func.isRequired,
     generatePDF: PropTypes.func.isRequired,
   };
 
@@ -52,6 +54,7 @@ class Header extends Component {
       resetAcademicBackground,
       resetMiscellaneous,
       resetLanguages,
+      resetReferences,
     } = this.props;
     resetBasicInfo();
     resetProfessionalExperiences();
@@ -59,6 +62,7 @@ class Header extends Component {
     resetAcademicBackground();
     resetMiscellaneous();
     resetLanguages();
+    resetReferences();
   };
 
   render() {
@@ -102,6 +106,7 @@ export default connect(
     resetSkillsAndTrainings: skillsAndTrainingsActions.reset,
     resetAcademicBackground: academicBackgroundActions.reset,
     resetLanguages: languagesActions.reset,
+    resetReferences: referencesActions.reset,
     generatePDF: PDFGeneratorActions.generatePDF,
   }, dispatch),
 )(Header);
