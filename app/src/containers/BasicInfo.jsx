@@ -2,19 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import styled from 'styled-components';
 
 import Card from '../components/Card';
 import Fieldset from '../components/Fieldset';
-import TextInput, { Label } from '../components/TextInput';
+import TextInput from '../components/TextInput';
 import Textarea from '../components/Textarea';
 import * as basicInfoActions from '../reducers/basicInfo';
-
-const countryOptions = [{ name: 'Belgium', value: 'BE' }, { name: 'Luxembourg', value: 'LU' }];
-
-const SelectContainer = styled.div`
-  display: flex;
-`;
 
 const BasicInfo = (
   {
@@ -23,14 +16,12 @@ const BasicInfo = (
     position,
     email,
     phone,
-    country,
     executiveSummary,
     setFirstName,
     setLastName,
     setPosition,
     setEmail,
     setPhone,
-    setCountry,
     setExecutiveSummary,
   },
 ) => (
@@ -73,15 +64,6 @@ const BasicInfo = (
         onChange={setPhone}
         required
       />
-      <SelectContainer>
-        <Label>Country</Label>
-        <select
-          onChange={event => setCountry(event.target.value)}
-          value={country}
-        >
-          {countryOptions.map(option => <option value={option.value}>{option.name}</option>)}
-        </select>
-      </SelectContainer>
     </Fieldset>
     <Fieldset legend="Executive summary">
       <Textarea
@@ -102,17 +84,12 @@ BasicInfo.propTypes = {
   position: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
-  country: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-  }).isRequired,
   executiveSummary: PropTypes.string.isRequired,
   setFirstName: PropTypes.func.isRequired,
   setLastName: PropTypes.func.isRequired,
   setPosition: PropTypes.func.isRequired,
   setEmail: PropTypes.func.isRequired,
   setPhone: PropTypes.func.isRequired,
-  setCountry: PropTypes.func.isRequired,
   setExecutiveSummary: PropTypes.func.isRequired,
 };
 
@@ -123,7 +100,6 @@ export default connect(
     position: state.basicInfo.position,
     email: state.basicInfo.email,
     phone: state.basicInfo.phone,
-    country: state.basicInfo.country,
     executiveSummary: state.basicInfo.executiveSummary,
   }),
   dispatch => bindActionCreators({
@@ -132,7 +108,6 @@ export default connect(
     setPosition: basicInfoActions.setPosition,
     setEmail: basicInfoActions.setEmail,
     setPhone: basicInfoActions.setPhone,
-    setCountry: basicInfoActions.setCountry,
     setExecutiveSummary: basicInfoActions.setExecutiveSummary,
   }, dispatch),
 )(BasicInfo);
