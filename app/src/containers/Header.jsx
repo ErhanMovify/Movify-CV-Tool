@@ -82,7 +82,7 @@ class Header extends Component {
           </SecondaryButton>
           <PrimaryButton onClick={generatePDF}>
             GENERATE
-            <Helper text="Your CV will be automatically uploaded to Movify Dropbox on generate." lightMode />
+            <Helper text="By clicking on generate, your CV will be downloaded on your device and uploaded to Movify Dropbox." lightMode />
           </PrimaryButton>
         </ButtonsContainer>
       </HeaderContainer>
