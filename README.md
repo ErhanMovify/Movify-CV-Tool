@@ -33,6 +33,9 @@ You can find the server at the **source** and the app under the **app** folder.
 - Redux : [redux and react-redux](https://github.com/reduxjs/react-redux)
 - Data persistance : [redux-persist](https://github.com/rt2zz/redux-persist)
 - DOCX generation : [docxtemplater](https://docxtemplater.com/)
+- Dropbox SDK : [dropbox](https://github.com/dropbox/dropbox-sdk-js)
+  - A Dropbox app has been created on the marketing account.
+  - The dropbox folder in which cvs are uploaded is identified by its unique id statically in the code.
 
 ### Start project locally without server
 
