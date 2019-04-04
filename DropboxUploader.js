@@ -12,7 +12,6 @@ const uploadFile = (file, accessToken) => {
     var dbx = new Dropbox({ accessToken , fetch });
 
     dbx.filesUpload({ path: file.path, contents: file.data, mode: 'add', autorename: true })
-    .then(response => console.log(response))
     .catch(error => console.error(error.error));
 }
 
