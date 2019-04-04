@@ -64,4 +64,16 @@ Pull changes on git repository.
 
 Update or add **.env** if necessary.
 
-Start node scripts.
+Start node scripts. 
+
+[forever](https://www.npmjs.com/package/forever) is installed globally so you can use it to start the project.
+
+```
+git pull
+cd app
+npm i
+npm run-script build
+cd ..
+npm i
+forever start server.js
+```
