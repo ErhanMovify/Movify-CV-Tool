@@ -9,12 +9,16 @@ router.get('/', function (req, res, next) {
   res.sendfile(path.join(__dirname, 'app', 'dist', 'index.html'));
 })
 
-router.post('/generate', function(req, res, next){
+router.post('/generate', async function(req, res, next){
   const doc = CVGenerator.generateCVFromData(req.body);
-  if (!!doc) DropboxUploader.uploadDocToDropbox(doc, req.body);
+  var uploadError = false;
+  if (!!doc) uploadError = await DropboxUploader.uploadDocToDropbox(doc, req.body);
 
   res.status(200)
-  res.end(doc)
+  res.send({
+    data: doc,
+    dropboxError: !!uploadError
+  })
 });
 
 module.exports = router

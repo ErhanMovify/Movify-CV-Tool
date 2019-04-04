@@ -1,5 +1,6 @@
 import axios from 'axios';
 import fileDownload from 'js-file-download';
+import { toast } from 'react-toastify';
 import { formatLanguages } from '../utils/format';
 
 const initialState = {
@@ -44,13 +45,24 @@ export const generatePDF = () => (dispatch, getState) => {
       languages: formattedLanguages,
       references: state.references,
     },
-    responseType: 'arraybuffer',
   }).then(
     (response) => {
       dispatch({ type: FINISHED_GENERATING_PDF });
+      const docBuffer = Buffer.from(response.data.data.data);
       const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
       // Naming convention: CV Movify - Firstname Lastname - YYYYMMDD - Position
-      fileDownload(response.data, `CV Movify - ${state.basicInfo.firstName} ${state.basicInfo.lastName} - ${date} - ${state.basicInfo.position}.docx`);
+      fileDownload(docBuffer, `CV Movify - ${state.basicInfo.firstName} ${state.basicInfo.lastName} - ${date} - ${state.basicInfo.position}.docx`);
+      if (response.data.dropboxError) {
+        toast.error('An error ocurred while uploading to Dropbox. Please, try again later or send your generated CV to your Movify contact.');
+      } else {
+        toast.success('Your CV was successfully uploaded !');
+      }
+    },
+  ).catch(
+    (error) => {
+      console.error('error', error);
+      dispatch({ type: FINISHED_GENERATING_PDF });
+      toast.error('An error ocurred. Please, try again later.');
     },
   );
 };
