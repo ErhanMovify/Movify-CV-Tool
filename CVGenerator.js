@@ -21,11 +21,17 @@ const angularParser = function (tag) {
   };
 };
 
+const regex = /\\u00(0[0-8]|0B|0b|0C|0c|0E|0e|0F|0f|1[0-9a-fA-F])/
+
+const escape = (value) => value.replace(regex, "")
+
 const TEMPLATE_FILE_PATH = path.resolve(__dirname, 'resources', 'template.docx');
 const TEMPLATE_FILE_TYPE = 'binary';
 
 module.exports = {
   generateCVFromData(DATA) {
+  
+    const escapedData = JSON.parse(escape(JSON.stringify(DATA)));
 
 //Load the docx file as a binary
     const content = fs.readFileSync(TEMPLATE_FILE_PATH, TEMPLATE_FILE_TYPE);
@@ -37,7 +43,7 @@ module.exports = {
     doc.setOptions({parser: angularParser})
 
   //set the templateVariables
-    doc.setData(DATA);
+    doc.setData(escapedData);
 
     try {
       // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
