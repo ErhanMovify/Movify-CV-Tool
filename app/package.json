@@ -31,7 +31,7 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "babel-preset-stage-0": "^6.24.1",
     "js-file-download": "^0.4.1",
     "normalize.css": "^8.0.0",
