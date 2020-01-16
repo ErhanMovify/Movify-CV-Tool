@@ -9,7 +9,7 @@ const theme = {
   colors: {
     lightGrey: '#CCC',
     darkGrey: '#444444',
-    movify: '#F64D35',
+    movify: '#E6332A',
   },
 };
 
